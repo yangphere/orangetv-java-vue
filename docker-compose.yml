@@ -1,6 +1,6 @@
 services:
   orangetv:
-    image: ghcr.io/djteang/orangetv-java-vue:latest
+    image: ${ORANGETV_IMAGE:-ghcr.io/yangphere/orangetv-java-vue:latest}
     container_name: orangetv
     restart: unless-stopped
     ports:

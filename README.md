@@ -163,6 +163,26 @@ http://服务器IP:3000
 
 ## 部署
 
+### 按 Git 标签自动发布 Docker 镜像
+
+仓库已配置 GitHub Actions：每次向仓库推送标签时，Actions 会自动构建后端、前端和 Docker 镜像，并发布到 GitHub Container Registry（GHCR）。例如：
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+镜像地址为 `ghcr.io/yangphere/orangetv-java-vue`，会同时生成 `v1.0.0`、`1.0.0`、`1.0` 和 `latest` 标签。首次使用时，请在仓库 Settings → Actions → General 中确认允许 GitHub Actions 创建和写入 Packages；发布的 GHCR 镜像默认可能是私有的，可在 Packages 设置中改为公开。
+
+部署时可直接使用：
+
+```bash
+docker compose pull
+docker compose up -d
+```
+
+也可以通过 `.env` 中的 `ORANGETV_IMAGE` 覆盖镜像地址或标签。
+
 ### 文件结构
 
 部署目录 `/home/orangetv-java` 需要包含以下文件：
